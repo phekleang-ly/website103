@@ -1,20 +1,11 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
 
 Route::get('/', function () {
     return view('index');
 })->name('index');
-
-Route::get('about', function () {
-    return view('about');
-})->name('about');
-
-Route::get('contact-us', function () {
-    return view('contact');
-})->name('contact');
-
-
 
 Auth::routes();
 
