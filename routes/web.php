@@ -5,6 +5,7 @@ use App\Http\Controllers\postsController;
 
 use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
 
 Route::get('/', function () {
     return view('index');
