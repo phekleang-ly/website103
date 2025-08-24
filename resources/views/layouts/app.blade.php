@@ -42,7 +42,7 @@
                         </button>
                     </li> 
                     <li class="mx-3 welcome-text">
-                        <h3 class="mb-0 fw-bold text-truncate">Good Morning, James!</h3>
+                        <h3 class="mb-0 fw-bold text-truncate">Good Morning, Leang!</h3>
                         <!-- <h6 class="mb-0 fw-normal text-muted text-truncate fs-14">Here's your overview this week.</h6> -->
                     </li>                   
                 </ul>
@@ -262,7 +262,7 @@
                                     <img src="Backend/assets/images/users/avatar-1.jpg" alt="" class="thumb-md rounded-circle">
                                 </div>
                                 <div class="flex-grow-1 ms-2 text-truncate align-self-center">
-                                    <h6 class="my-0 fw-medium text-dark fs-13">{{ Auth::user()->name }}</h6>
+                                    <h6 class="my-0 fw-medium text-dark fs-13">hvshg</h6>
                                     <small class="text-muted mb-0">Front End Developer</small>
                                 </div><!--end media-body-->
                             </div>
@@ -321,11 +321,20 @@
                             <div class="collapse " id="sidebarUsermanagement">
                                 <ul class="nav flex-column">
                                     <li class="nav-item">
-                                        <a class="nav-link" href="index.html">Roles</a>
+                                        <a class="nav-link" href="{{route('role.index')}}">Roles</a>
                                     </li><!--end nav-item-->
                                     <li class="nav-item">
-                                        <a class="nav-link" href="ecommerce-index.html">Users</a>
+                                        <a class="nav-link" href="{{route('banner.index')}}">Banners
+                                            
+                                        </a>
                                     </li><!--end nav-item-->
+
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="{{route('post.index')}}">Posts
+                                            
+                                        </a>
+                                    </li><!--end nav-item-->
+                                    
                                 </ul><!--end nav-->
                             </div><!--end startbarDashboards-->
                         </li><!--end nav-item-->
