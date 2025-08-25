@@ -2,6 +2,7 @@
 use App\Http\Controllers\BannerController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\postsController;
+use App\Http\Controllers\MenuController;
 
 use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
@@ -38,4 +39,10 @@ Route::get('post-edit/{id}',[postsController::class,'edit'])->name('post.edit');
 Route::put('post-update/{id}',[postsController::class,'update'])->name('post.update');
 Route::get('post-delete/{id}',[postsController::class,'destroy'])->name('post.delete');
 
+Route::get('menu-index', [MenuController::class, 'index']) -> name('menu.index');
+Route::get('menu-create', [MenuController::class, 'create']) -> name('menu.create');
+Route::post('menu-store', [MenuController::class, 'store']) -> name('menu.store');
+Route::get('menu-edit/{id}', [MenuController::class, 'edit']) -> name('menu.edit');
+Route::put('menu-update/{id}', [MenuController::class, 'update']) -> name('menu.update');
+Route::get('menu-destroy/{id}', [MenuController::class, 'destroy']) -> name('menu.delete');
 

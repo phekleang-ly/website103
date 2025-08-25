@@ -82,11 +82,15 @@
                                               <tr>
                                                 
                                                 </th>
-                                                <th class="ps-2">Name</th>
-
+                                                <th class="ps-2">No</th>
+                                                <th class="ps-2">Title</th>
+                                                <th class="ps-2">SubTitle</th>
+                                                <th class="ps-2">Content</th>
+                                                
                                                 <th>Description</th>
-                                               
-                                                <th class="text-end">Action</th>
+                                                <th class="ps-2">Image</th>
+                                                <th class="ps-2">Action</th>
+
                                               </tr>
                                             </thead>
                                             <tbody>
@@ -96,10 +100,19 @@
                                                         <tr>
                                                             <td>{{$i++}}</td>
                                                             <td>{{$row['title']}}</td>
-                                                            <td>{{$row['description']}}</td>
+                                                            
                                                             <td>{{$row['sub_title']}}</td>
                                                             <td>{{$row['content']}}</td>
-                                                            <td><img src="/images/{{$row['image']}}" alt=""></td>
+                                                            <td>{{$row['description']}}</td>
+                                                            
+                                                            <td>
+                                                                @if($row->image)
+                                                                    <img src="{{ asset($row->image) }}" width="50px">
+                                                                @else
+                                                                    No Image
+                                                                @endif
+                                                            </td>
+
                                                             <td>{{$row['active']}}</td>
                                                             <td class="text-end">                                                       
                                                                 <a href="{{route('post.edit',$row->id)}}"><i class="las la-pen text-secondary fs-18"></i></a>

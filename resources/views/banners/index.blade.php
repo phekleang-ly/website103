@@ -82,11 +82,10 @@
                                               <tr>
                                                 
                                                 </th>
+                                                <th class="ps-2">No</th>
                                                 <th class="ps-2">Name</th>
+                                                <th >Description</th>
 
-                                                <th>Description</th>
-                                               
-                                                <th class="text-end">Action</th>
                                               </tr>
                                             </thead>
                                             <tbody>

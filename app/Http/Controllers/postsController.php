@@ -42,7 +42,8 @@ class postsController extends Controller
                 $name = time() . '.' . $image->getClientOriginalExtension();
                 $destinationPath = public_path('/images');
                 $image->move($destinationPath, $name);
-                $imagePath = '/images' . $name;
+                $imagePath = '/images/' . $name;
+
             }
             posts::create([
                 'title'=> $request->title,
@@ -76,8 +77,12 @@ class postsController extends Controller
      */
     public function edit(string $id)
     {
-        $row = posts::findOrFail($id);
-        return view('posts.edit',compact('row'));
+        
+
+    $row = posts::findOrFail($id);
+    return view('posts.edit', compact('row'));
+
+
     }
 
     /**
@@ -98,10 +103,11 @@ class postsController extends Controller
         try {
             if ($request->hasFile('image')) {
                 $image = $request->file('image');
-                $name = time() . '-' . $image->getClientOriginalExtension();
+                $name = time() . '.' . $image->getClientOriginalExtension();
                 $destinationPath = public_path('/images');
                 $image->move($destinationPath, $name);
-                $imagePath = '/images' . $name;
+                $imagePath = '/images/' . $name;
+
             }
             
             
@@ -109,7 +115,7 @@ class postsController extends Controller
                 'title'=> $request->title,
                 'description'=>$request->description,
                 'sub_title' => $request->sub_title ,
-                'image' => $request->image ? $imagePath:null,
+                'image'       => $request->image ? $imagePath : $row->image,
                 'active' => $request-> active,
                 'content' => $request->content
 
@@ -131,8 +137,8 @@ class postsController extends Controller
     {
         $row = posts::findOrFail($id);
 
-        if ($user->photo && file_exists(public_path($user->photo))) {
-            unlink(public_path($user->photo));
+        if ($row->image && file_exists(public_path($row->image))) {
+        unlink(public_path($row->image));
         }
 
         $row->delete();
