@@ -3,14 +3,14 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\posts;
+use App\Models\Post;
 
-class postsController extends Controller
+class PostController extends Controller
 {
    
     public function index()
     {
-        $rows = posts::WhereNull('deleted_at')->get();
+        $rows = Post::WhereNull('deleted_at')->get();
         return view('posts.index',compact('rows'));
     }
 
@@ -44,13 +44,13 @@ class postsController extends Controller
                 $image->move($destinationPath, $name);
                 $imagePath = '/images' . $name;
             }
-            posts::create([
+            Post::create([
                 'title'=> $request->title,
                 'description'=>$request->description,
                 'sub_title' => $request->sub_title ,
                 'image' => $request->image ? $imagePath:null,
                 'active' => $request-> active,
-                'content' => $request->content
+                'content' => $validated['content']
 
             ]);
             return redirect()->route('post.index');
@@ -60,7 +60,6 @@ class postsController extends Controller
 
         
 
-        return redirect()->route('post.index');
     }
 
     /**
@@ -76,7 +75,7 @@ class postsController extends Controller
      */
     public function edit(string $id)
     {
-        $row = posts::findOrFail($id);
+        $row = Post::findOrFail($id);
         return view('posts.edit',compact('row'));
     }
 
@@ -85,7 +84,7 @@ class postsController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        $row = posts::findOrfail($id);
+        $row = Post::findOrfail($id);
         $validated = $request -> validate([
             'title'  => 'required|unique:posts,title,' . $id . ',id,deleted_at,NULL',
             'description' => 'max:200',
@@ -111,7 +110,7 @@ class postsController extends Controller
                 'sub_title' => $request->sub_title ,
                 'image' => $request->image ? $imagePath:null,
                 'active' => $request-> active,
-                'content' => $request->content
+                'content' => $validated['content']
 
             ]);
             return redirect()->route('post.index');
@@ -121,7 +120,6 @@ class postsController extends Controller
 
         
 
-        return redirect()->route('post.index');
     }
 
     /**
@@ -129,10 +127,10 @@ class postsController extends Controller
      */
     public function destroy(string $id)
     {
-        $row = posts::findOrFail($id);
+        $row = Post::findOrFail($id);
 
-        if ($user->photo && file_exists(public_path($user->photo))) {
-            unlink(public_path($user->photo));
+        if ($row->photo && file_exists(public_path($row->photo))) {
+            unlink(public_path($row->photo));
         }
 
         $row->delete();
